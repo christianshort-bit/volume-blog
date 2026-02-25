@@ -1,14 +1,16 @@
 :root {
-    --bg-color: #f2f2f2;
-    --text-color: #0c0c0c;
-    --accent: #000033;
-    /* Dark Blue */
-    --mid-blue: #2c7bb6;
-    /* Mid Blue for button */
-    --secondary-text: #555555;
+    --bg-color: #ffffff;
+    --surface-color: #f8f9fa;
+    --text-main: #212529;
+    --text-color: #212529;
+    --text-secondary: #6c757d;
+    --accent: #0066cc;
+    --mid-blue: #0066cc;
     --border: #e0e0e0;
-    --font-sans: "Century Gothic", "CenturyGothic", "AppleGothic", sans-serif;
-    --font-title: "Arial Black", Arial, sans-serif;
+    --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-title: 'Inter', system-ui, -apple-system, sans-serif;
+    --container-width: 1200px;
 }
 
 * {
@@ -53,61 +55,72 @@ a:hover {
     color: var(--secondary-text);
 }
 
-/* Header */
-.site-header {
-    padding: 0.6rem 5%;
-    /* Reduced height by ~20-30% */
-    display: flex;
-    justify-content: center;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: rgba(255, 255, 255, 0.85);
-    /* Semi-transparent */
-    backdrop-filter: blur(5px);
-    /* Blur effect */
-    z-index: 100;
+/* Force Inter for Uplifted Elements */
+.nav-link,
+.header-title,
+.main-footer a {
+    font-family: var(--font-heading);
 }
 
-.header-inner {
+/* Header - Matched to volume-blog */
+.main-header {
+    padding: 0.6rem 5%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
     width: 100%;
-    max-width: 1200px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+    box-shadow: none;
+    height: auto;
+}
+
+.header-container {
+    width: 100%;
+    max-width: var(--container-width);
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    /* For absolute centering if needed, though flex space-between works if sides are even. Let's use absolute center to be sure. */
+    margin: 0;
 }
 
-.header-title {
-    font-family: var(--font-title);
-    font-size: 1.4rem;
-    text-transform: none;
-    /* Changed from uppercase */
-    letter-spacing: -0.05em;
-    font-weight: 900;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--accent);
-    /* Dark Blue */
-}
-
-.logo {
+.logo-link {
     display: flex;
     align-items: center;
 }
 
-.logo img {
-    max-height: 160px;
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-img {
+    max-height: 40px;
     width: auto;
     object-fit: contain;
     display: block;
     mix-blend-mode: multiply;
-    /* Hide white background */
 }
 
-nav a {
+.header-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-main);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Home Button */
+.home-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,16 +130,56 @@ nav a {
     background-color: var(--mid-blue);
     color: #ffffff;
     border-radius: 50%;
-    /* Circle */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
-nav a:hover {
+.home-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     color: #ffffff;
     filter: brightness(1.1);
+}
+
+/* Navigation Links */
+.nav-links-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.nav-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0066cc;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.nav-link:hover {
+    filter: brightness(0.8);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #0066cc;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .nav-links-group {
+        display: none;
+    }
 }
 
 /* Feed */
@@ -373,12 +426,75 @@ nav a:hover {
 }
 
 /* Footer */
-.site-footer {
-    text-align: center;
+.main-footer {
     padding: 3rem 0;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid #eee;
+    background: #ffffff;
+    color: var(--text-secondary);
+}
+
+.main-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-links a {
+    margin-right: 2rem;
+    color: var(--text-main);
+    font-weight: 600;
+    position: relative;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--text-main);
+    transition: width 0.3s;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+.copyright {
     font-size: 0.9rem;
-    color: var(--secondary-text);
+}
+
+/* Footer Social */
+.footer-social {
+    display: flex;
+    align-items: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    color: #E1306C;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .main-footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links a {
+        margin: 0 1rem;
+    }
 }
 
 @keyframes fadeIn {
