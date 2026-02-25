@@ -1,0 +1,404 @@
+:root {
+    --bg-color: #f2f2f2;
+    --text-color: #0c0c0c;
+    --accent: #000033;
+    /* Dark Blue */
+    --mid-blue: #2c7bb6;
+    /* Mid Blue for button */
+    --secondary-text: #555555;
+    --border: #e0e0e0;
+    --font-sans: "Century Gothic", "CenturyGothic", "AppleGothic", sans-serif;
+    --font-title: "Arial Black", Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    /* Tighter kerning */
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url('assets/images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.2;
+    /* 80% white overlay equivalent */
+    filter: blur(3px);
+    /* Subtle blur */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--secondary-text);
+}
+
+/* Header */
+.site-header {
+    padding: 0.6rem 5%;
+    /* Reduced height by ~20-30% */
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.85);
+    /* Semi-transparent */
+    backdrop-filter: blur(5px);
+    /* Blur effect */
+    z-index: 100;
+}
+
+.header-inner {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    /* For absolute centering if needed, though flex space-between works if sides are even. Let's use absolute center to be sure. */
+}
+
+.header-title {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    text-transform: none;
+    /* Changed from uppercase */
+    letter-spacing: -0.05em;
+    font-weight: 900;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--accent);
+    /* Dark Blue */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    max-height: 160px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    mix-blend-mode: multiply;
+    /* Hide white background */
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background-color: var(--mid-blue);
+    color: #ffffff;
+    border-radius: 50%;
+    /* Circle */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+    filter: brightness(1.1);
+}
+
+/* Feed */
+.blog-feed {
+    padding: 4rem 5%;
+    min-height: 80vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--secondary-text);
+}
+
+/* Post Card */
+.blog-post {
+    margin-bottom: 6rem;
+    animation: fadeIn 0.8s ease backwards;
+}
+
+.post-header {
+    margin-bottom: 2rem;
+    text-align: left;
+    /* Changed from center */
+}
+
+.post-date {
+    display: block;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: #00008b;
+    /* Dark Blue */
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.post-title {
+    font-family: var(--font-sans);
+    /* Changed to Century Gothic */
+    font-size: 1.75rem;
+    /* ~30% smaller than 2.5rem */
+    font-weight: 400;
+    /* Normal weight */
+    line-height: 1.2;
+    margin: 0;
+}
+
+.featured-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.post-content {
+    font-size: 1.1rem;
+    color: #333333;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    /* Normal weight */
+    /* New Card Styles */
+    background-color: #ffffff;
+    /* White background */
+    padding: 2rem;
+    /* Spacing inside */
+    border-radius: 15px;
+    /* Rounded corners */
+    text-align: justify;
+    /* Justified text */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    /* Heavy soft shadow */
+    width: 100%;
+    /* Ensure full width matches carousel */
+    border: none;
+    /* Removed border */
+    margin-top: 2rem;
+    /* Fresh air above */
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+}
+
+.post-content img {
+    display: none;
+    /* Hide images inside the post text as requested */
+}
+
+/* Carousel */
+.gallery-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    /* Add spacing below if carousel is on top */
+}
+
+.gallery-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.gallery-track {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item {
+    min-width: 33.33%;
+    /* 3 images visible */
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    /* Max 250px height */
+    object-fit: contain;
+    /* Ensure full image is visible, or cover if preferred. User said "max on longest side", contain is safer to see whole image, but cover looks cleaner in a fixed box. Let's use cover for uniformity but max-height is set. Wait, user said "limited to 250 pixels max on the longest sides". */
+    /* If we use object-fit: contain, we see margins. If cover, we crop.
+       Let's use object-fit: cover for the carousel thumbnail feel, but respect the height. 
+       Actually, "max on longest sides" implies we might want object-fit: scale-down or contain.
+       Let's use object-fit: cover for the carousel strip to look neat, and the lightbox showing the full thing.
+    */
+    object-fit: cover;
+    border-radius: 8px;
+    /* Rounded corners */
+    display: block;
+    cursor: pointer;
+    /* Clickable */
+    border: none;
+    /* Removed border */
+    /* Shadow removed as requested */
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    /* Semi-transparent white */
+    backdrop-filter: blur(8px);
+    /* Glass effect */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.lightbox-img {
+    max-width: 600px;
+    /* Max 600px on longest side */
+    max-height: 600px;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    /* Rounded edges */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    /* Cast shadow */
+    display: block;
+    animation: zoomIn 0.3s ease;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: #000;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    transition: background 0.2s;
+}
+
+.carousel-btn:hover {
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .post-title {
+        font-size: 1.4rem;
+    }
+
+    .blog-feed {
+        padding: 2rem 5%;
+    }
+}

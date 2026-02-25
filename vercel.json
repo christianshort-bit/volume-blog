@@ -1,0 +1,19 @@
+{
+    "cleanUrls": true,
+    "redirects": [
+        {
+            "source": "/admin(.*)",
+            "destination": "/"
+        },
+        {
+            "source": "/public/admin(.*)",
+            "destination": "/"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/public/$1"
+        }
+    ]
+}

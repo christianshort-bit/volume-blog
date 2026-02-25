@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volume Blog Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="../assets/images/logo1.png" alt="VOLUME" style="max-height: 50px; margin-bottom: 1rem;">
+            <nav style="margin-top: 10px;">
+                <a href="../index.html" target="_blank"
+                    style="color: var(--primary-color); text-decoration: none; font-weight: 500;">View Live Blog
+                    &rarr;</a>
+            </nav>
+            <p>Create and manage your blog posts. Changes are saved locally.</p>
+        </header>
+
+        <main>
+            <section class="editor-section">
+                <h2>Edit Post</h2>
+                <form id="postForm">
+                    <input type="hidden" id="edit index">
+
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" required placeholder="Enter post title...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carouselPosition">Carousel Position</label>
+                        <select id="carouselPosition">
+                            <option value="bottom">Bottom (Default)</option>
+                            <option value="top">Top</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <p class="helper-text">You can use simple HTML or plain text.</p>
+                        <textarea id="content" rows="10" required
+                            placeholder="Write your post content here..."></textarea>
+                    </div>
+
+                    <div class="form-group" id="gallerySection">
+                        <label>Gallery (optional)</label>
+                        <div id="galleryList">
+                            <!-- Gallery items will appear here -->
+                        </div>
+                        <input type="file" id="galleryUpload" accept="image/*" multiple>
+                        <button type="button" id="galleryUploadBtn">Add to Gallery</button>
+                    </div>
+
+                    <div class="actions">
+                        <button type="submit" class="primary-btn">Save Post</button>
+                        <button type="button" id="cancelBtn" class="secondary-btn">Clear / Cancel</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="posts-list-section">
+                <h2>Existing Posts</h2>
+                <div id="postsList" class="posts-list">
+                    <!-- Posts will be rendered here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
