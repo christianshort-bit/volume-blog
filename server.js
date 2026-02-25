@@ -87,57 +87,61 @@ function startServer(port) {
         console.log(`Server running at http://localhost:${port}`);
         console.log(`Opening Admin Editor...`);
 
-        // Try to open in Chrome on Windows specifically
-        const url = `http://localhost:${port}/admin`;
+        if (!process.env.ELECTRON) {
+            // Try to open in Chrome on Windows specifically
+            const url = `http://localhost:${port}/admin`;
 
-        if (process.platform === 'win32') {
-            const potentialPaths = [
-                'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-                'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-                path.join(process.env.LOCALAPPDATA || '', 'Google\\Chrome\\Application\\chrome.exe')
-            ];
+            if (process.platform === 'win32') {
+                const potentialPaths = [
+                    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+                    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+                    path.join(process.env.LOCALAPPDATA || '', 'Google\\Chrome\\Application\\chrome.exe')
+                ];
 
-            let chromePath = '';
-            console.log('Searching for Chrome...');
-            for (const p of potentialPaths) {
-                console.log(`Checking path: ${p}`);
-                if (fs.existsSync(p)) {
-                    chromePath = p;
-                    console.log(`Found Chrome at: ${chromePath}`);
-                    break;
+                let chromePath = '';
+                console.log('Searching for Chrome...');
+                for (const p of potentialPaths) {
+                    console.log(`Checking path: ${p}`);
+                    if (fs.existsSync(p)) {
+                        chromePath = p;
+                        console.log(`Found Chrome at: ${chromePath}`);
+                        break;
+                    }
                 }
-            }
 
-            if (chromePath) {
-                console.log(`Attempting to launch Chrome via command line...`);
-                // Use 'start' with title "" to handle quotes correctly
-                exec(`start "" "${chromePath}" "${url}"`, (err) => {
-                    if (err) {
-                        console.error('Failed to launch Chrome executable:', err);
-                        console.log('Falling back to default browser...');
-                        open(url);
-                    } else {
-                        console.log('Chrome launch command executed.');
-                    }
-                });
+                if (chromePath) {
+                    console.log(`Attempting to launch Chrome via command line...`);
+                    // Use 'start' with title "" to handle quotes correctly
+                    exec(`start "" "${chromePath}" "${url}"`, (err) => {
+                        if (err) {
+                            console.error('Failed to launch Chrome executable:', err);
+                            console.log('Falling back to default browser...');
+                            open(url);
+                        } else {
+                            console.log('Chrome launch command executed.');
+                        }
+                    });
+                } else {
+                    console.log('Chrome not found in standard paths. Trying "start chrome"...');
+                    exec(`start chrome "${url}"`, (err) => {
+                        if (err) {
+                            console.error('Could not command line start chrome:', err.message);
+                            console.log('Opening default browser...');
+                            open(url);
+                        } else {
+                            console.log('Start Chrome command executed.');
+                        }
+                    });
+                }
             } else {
-                console.log('Chrome not found in standard paths. Trying "start chrome"...');
-                exec(`start chrome "${url}"`, (err) => {
-                    if (err) {
-                        console.error('Could not command line start chrome:', err.message);
-                        console.log('Opening default browser...');
-                        open(url);
-                    } else {
-                        console.log('Start Chrome command executed.');
-                    }
+                // Non-Windows: Try generic chrome opening or default
+                open(url, { app: { name: 'google chrome' } }).catch((err) => {
+                    console.error('Non-windows launch failed:', err);
+                    open(url);
                 });
             }
         } else {
-            // Non-Windows: Try generic chrome opening or default
-            open(url, { app: { name: 'google chrome' } }).catch((err) => {
-                console.error('Non-windows launch failed:', err);
-                open(url);
-            });
+            console.log("Ready for Electron UI.");
         }
     }).on('error', (err) => {
         if (err.code === 'EADDRINUSE') {
