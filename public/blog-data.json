@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "title": "test3",
+    "date": "2026-02-25",
+    "content": "test3",
+    "carouselPosition": "bottom",
+    "gallery": [
+      "/assets/images/1772052522954-asset4.png",
+      "/assets/images/1772052522965-hero_bg.png"
+    ]
+  }
+]
