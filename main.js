@@ -8,10 +8,10 @@ let serverProcess = null;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 600,
-        height: 480,
-        resizable: false,
-        title: "Volume Blog Manager",
+        width: 1400,
+        height: 900,
+        resizable: true,
+        title: "Volume Blog Studio",
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
@@ -52,14 +52,8 @@ ipcMain.on('start-server', (event) => {
 
         if (output.includes('Server running at http://localhost:')) {
             const match = output.match(/http:\/\/localhost:\d+/);
-            if (match) {
-                let editorWindow = new BrowserWindow({
-                    width: 1024,
-                    height: 800,
-                    title: "Volume Editor",
-                    autoHideMenuBar: true
-                });
-                editorWindow.loadURL(match[0] + '/admin');
+            if (match && mainWindow && !mainWindow.isDestroyed()) {
+                mainWindow.webContents.send('server-ready', match[0] + '/admin');
             }
         }
     });

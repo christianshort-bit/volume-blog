@@ -1,14 +1,1 @@
-[
-  {
-    "title": "test2",
-    "date": "2026-02-25",
-    "content": "test2",
-    "carouselPosition": "top",
-    "gallery": [
-      "/assets/images/1772052021863-1.png",
-      "/assets/images/1772052021890-2.png",
-      "/assets/images/1772052021910-3.png",
-      "/assets/images/1772052021935-4.png"
-    ]
-  }
-]
+[]

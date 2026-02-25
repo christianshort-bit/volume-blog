@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volume Blog Manager</title>
+    <title>Volume Blog Studio</title>
     <style>
         :root {
             --bg-color: #121212;
             --surface-color: #1e1e1e;
             --primary-color: #e0e0e0;
             --accent-color: #ff4a4a;
-            /* A sleek red to match Volume constraints */
             --text-color: #e0e0e0;
             --text-muted: #888;
         }
@@ -26,10 +25,21 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 25%;
+            min-width: 250px;
+            max-width: 350px;
+            background-color: var(--surface-color);
             padding: 24px;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            border-right: 1px solid #333;
         }
 
         .header {
@@ -52,15 +62,16 @@
 
         .controls {
             display: flex;
+            flex-direction: column;
             gap: 16px;
             margin-bottom: 24px;
         }
 
         button {
-            flex: 1;
+            width: 100%;
             padding: 16px;
-            border: 2px solid var(--surface-color);
-            background-color: var(--surface-color);
+            border: 2px solid #333;
+            background-color: var(--bg-color);
             color: var(--text-color);
             border-radius: 8px;
             font-size: 16px;
@@ -105,42 +116,71 @@
             white-space: pre-wrap;
             word-wrap: break-word;
         }
+
+        .editor-container {
+            flex: 1;
+            background-color: #fff;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 18px;
+            transition: opacity 0.5s;
+            z-index: 10;
+        }
     </style>
 </head>
 
 <body>
+    <div class="sidebar">
+        <div class="header">
+            <h1>Volume Blog</h1>
+            <p>Studio Environment</p>
+        </div>
 
-    <div class="header">
-        <h1>Volume Blog</h1>
-        <p>Desktop Management Panel</p>
+        <div class="controls">
+            <button id="btn-publish" title="Upload to GitHub & Vercel">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" />
+                </svg>
+                Publish Live
+            </button>
+        </div>
+
+        <div class="console" id="console">
+            <div class="console-line">Initializing Studio...</div>
+        </div>
     </div>
 
-    <div class="controls">
-        <button id="btn-start" title="Launch the local editor in Chrome">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-            </svg>
-            Edit Locally
-        </button>
-        <button id="btn-publish" title="Upload to GitHub & Vercel">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" />
-            </svg>
-            Publish Live
-        </button>
-    </div>
-
-    <div class="console" id="console">
-        <div class="console-line">Ready. Waiting for input...</div>
+    <div class="editor-container">
+        <div id="loading" class="loading-overlay">Starting Local Server...</div>
+        <iframe id="editor-frame" src="about:blank"></iframe>
     </div>
 
     <script>
         const { ipcRenderer } = require('electron');
 
-        const btnStart = document.getElementById('btn-start');
         const btnPublish = document.getElementById('btn-publish');
         const consoleEl = document.getElementById('console');
+        const editorFrame = document.getElementById('editor-frame');
+        const loadingOverlay = document.getElementById('loading');
 
         function log(message) {
             const line = document.createElement('div');
@@ -154,15 +194,22 @@
             log(message);
         });
 
-        btnStart.addEventListener('click', () => {
-            log('--> Initiating Editor Start');
-            ipcRenderer.send('start-server');
+        ipcRenderer.on('server-ready', (event, url) => {
+            log('--> Editor ready at: ' + url);
+            editorFrame.src = url;
+            setTimeout(() => {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => loadingOverlay.style.display = 'none', 500);
+            }, 500);
         });
 
         btnPublish.addEventListener('click', () => {
             log('--> Initiating Cloud Publish');
             ipcRenderer.send('publish');
         });
+
+        // Autostart server on load
+        ipcRenderer.send('start-server');
     </script>
 </body>
 
