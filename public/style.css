@@ -100,7 +100,7 @@ a:hover {
 }
 
 .logo-img {
-    max-height: 40px;
+    max-height: 60px;
     width: auto;
     object-fit: contain;
     display: block;
@@ -108,14 +108,15 @@ a:hover {
 
 .page-title {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 800;
     color: var(--text-main);
-    letter-spacing: -1px;
-    text-transform: uppercase;
+    letter-spacing: normal;
+    text-transform: none;
     text-align: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    line-height: 1.2;
 }
 
 /* Home Button */
@@ -187,8 +188,8 @@ a:hover {
     }
 
     .page-title {
-        font-size: 1.8rem;
-        letter-spacing: 0px;
+        font-size: 2rem;
+        letter-spacing: normal;
         white-space: normal;
     }
 
