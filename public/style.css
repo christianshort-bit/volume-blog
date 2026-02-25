@@ -188,12 +188,9 @@ a:hover {
     }
 
     .header-title {
-        font-size: 1rem;
+        font-size: 0.9rem;
         letter-spacing: 0px;
-    }
-
-    .logo-img {
-        max-height: 28px;
+        white-space: nowrap;
     }
 
     .home-btn {
@@ -375,16 +372,15 @@ a:hover {
 
 .lightbox-content {
     position: relative;
-    max-width: 90%;
-    max-height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .lightbox-img {
-    max-width: 600px;
-    /* Max 600px on longest side */
-    max-height: 600px;
-    width: auto;
-    height: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
     border-radius: 12px;
     /* Rounded edges */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
