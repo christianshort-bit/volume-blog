@@ -1,5 +1,20 @@
 [
   {
+    "title": "2.1 System",
+    "date": "2026-02-26",
+    "content": "Feb 25'\n\nFirst commission completed and very happy customer. \nA bespoke 2.1 loudspeaker setup, fully designed, built and tested including crossovers. Finished in duratex hard wearing PA speaker black with Bubinga inserts. This setup designed to fit the customers space (standing desk office)Very powerful system for that environment!",
+    "carouselPosition": "top",
+    "gallery": [
+      "/assets/images/1772117181388-screenshot_2026_02_26_144444.png",
+      "/assets/images/1772117228274-20250330_094704.jpg",
+      "/assets/images/1772117228371-20250330_093845.jpg",
+      "/assets/images/1772117228465-20250313_200201.jpg",
+      "/assets/images/1772117228521-20250216_180609.jpg",
+      "/assets/images/1772117228555-20250204_185327.jpg",
+      "/assets/images/1772117228622-20250202_174648.jpg"
+    ]
+  },
+  {
     "title": "3 way speaker loosely based on Toid's Dinas (Do I Need A Subwoofer)",
     "date": "2026-02-26",
     "content": "Nov 24'\n\n3 way speaker loosely based on Toid's Dinas (Do I Need A Subwoofer)\n\nThis was a complete design process, including the crossover build. The cabinets are birch fronted, MDF, I used a little maple to do the surrounds, this helped in terminating the maple veneer i used.\n\nAbout the speaker:\nI wanted to build a WAW (woofer assisted wideband) cabinet but this turned into a 3 way design with a difference... The 5.25 inch woofer is actually classed as a subwoofer and can achieve 35 hz and has a huge xmax of 12mm. The crossover points i shot for were 300hz (woofer to mid) and as the mid is actually a full range capable driver I crossed the 1 inch titanium tweeter around 5khz. I hoped these would sound big as a result. The cabinet design was done using WinISD and the crossover design done in VituixCAD. I'll be testing and measuring the responses soon. Watch this space for updates.\n\nThe speaker is similar to 123toid's Dinas speaker in that it uses the same mid/bass drivers. However i wanted a round port vented design and a different crossover characteristic . The cabinet interior volume all said is 11 litres. \n\nA valuable learning introduction to crossover building and testing.",
