@@ -1,5 +1,20 @@
 [
   {
+    "title": "3 way speaker loosely based on Toid's Dinas (Do I Need A Subwoofer)",
+    "date": "2026-02-26",
+    "content": "Nov 24'\n\n3 way speaker loosely based on Toid's Dinas (Do I Need A Subwoofer)\n\nThis was a complete design process, including the crossover build. The cabinets are birch fronted, MDF, I used a little maple to do the surrounds, this helped in terminating the maple veneer i used.\n\nAbout the speaker:\nI wanted to build a WAW (woofer assisted wideband) cabinet but this turned into a 3 way design with a difference... The 5.25 inch woofer is actually classed as a subwoofer and can achieve 35 hz and has a huge xmax of 12mm. The crossover points i shot for were 300hz (woofer to mid) and as the mid is actually a full range capable driver I crossed the 1 inch titanium tweeter around 5khz. I hoped these would sound big as a result. The cabinet design was done using WinISD and the crossover design done in VituixCAD. I'll be testing and measuring the responses soon. Watch this space for updates.\n\nThe speaker is similar to 123toid's Dinas speaker in that it uses the same mid/bass drivers. However i wanted a round port vented design and a different crossover characteristic . The cabinet interior volume all said is 11 litres. \n\nA valuable learning introduction to crossover building and testing.",
+    "carouselPosition": "bottom",
+    "gallery": [
+      "/assets/images/1772116094665-20241215_173108.jpg",
+      "/assets/images/1772116094790-20241124_144855.jpg",
+      "/assets/images/1772116094815-20241119_081000.jpg",
+      "/assets/images/1772116094882-20241110_161552.jpg",
+      "/assets/images/1772116094949-20241113_202352.jpg",
+      "/assets/images/1772116094985-20241118_191029.jpg",
+      "/assets/images/1772116804091-screenshot_2026_02_26_143947.png"
+    ]
+  },
+  {
     "title": "Weekend build. Downfiring dual 8 inch subwoofer",
     "date": "2026-02-26",
     "content": "Oct24'\n\nWeekend build. Downfiring dual 8 inch subwoofer for the van, on a trailing lead with speakon connectors so it can be moved around according to seat configurations. Using 2 x Dayton Audio DCS205-4 in parallell to 2ohms. Nice sounding box! 52 litre enclosure and port tuned to 36 hz.",
