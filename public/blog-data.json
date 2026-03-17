@@ -1,5 +1,15 @@
 [
   {
+    "title": "Rugged bluetooth speaker",
+    "date": "2026-03-17",
+    "content": "June 25'\n\nAgain using the Dayton audio TCP115-8 Drivers, i wanted to make a stereo (well, pseudo stereo) rugged bluetooth speaker for the garden and jobsite. \n\nI had some scrap materials leftover and i already had the drivers on the shelf so i went ahead and made what is effectively a 2.1 speaker in one cabinet. \nI used the Wondom JAB4 4x30w amplifier board to power this project. With the Wondom unit, i set up two of the four channels as one mono to feed the two Dayton TCP118-8's (wired in parallel) I did this for power handling purposes. Then i used the other two amplifier channels to feed two Dayton Audio CE58N full range drivers in stereo. I used sigma studio to programme the DSP function of the Wondom board so that i could have a sensible crossover point between the 4 inch and 2 inch drivers, and also tune the eq to maximise the sound potential.\n\nI say 'Pseudo stereo' because the mono 4 inch drivers negate stereo seperation somewhat on frequencies below the crossover point, but the crossover point was much lower than crossing say, a tweeter, so the end result is pretty good and perfectly acceptable for a portable speaker.\n\nThe 6(ish) litre cabinet is dual ported, with a port tune of circa 65 hz. The unit is powered by a 6s1p Li-ion battery or 24v DC adapter.\n\nIn use, this speaker is very loud and produces excellent bass especialy if placing close to a wall. Battery life is also excellent.\n\nFinished in duratex with corner protectors.\n\n\n",
+    "carouselPosition": "bottom",
+    "gallery": [
+      "/assets/images/1773759922643-1.png",
+      "/assets/images/1773759922678-2.png"
+    ]
+  },
+  {
     "title": "2.1 System",
     "date": "2026-02-26",
     "content": "Feb 25'\n\nFirst commission completed and very happy customer. \nA bespoke 2.1 loudspeaker setup, fully designed, built and tested including crossovers. Finished in duratex hard wearing PA speaker black with Bubinga inserts. This setup designed to fit the customers space (standing desk office)Very powerful system for that environment!",
